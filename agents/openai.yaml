@@ -1,0 +1,4 @@
+interface:
+  display_name: "会话修复"
+  short_description: "排查 Codex 会话与子代理通信故障，保留历史快照后修复并按授权清理备份"
+  default_prompt: "请使用 $codex-session-repair 排查指定会话，按已授权范围修复、验证并清理备份。"
