@@ -1,6 +1,6 @@
 ---
 name: codex-session-repair
-description: 排查并修复 Codex 会话无法续聊、新建或跨会话转发失败、子代理正文不可读、provider 不匹配和 invalid_encrypted_content；在授权范围保留历史、验证恢复并清理本次备份。用于用户请求会话修复或修复后的备份清理。
+description: 排查并修复 Codex 会话无法续聊、新建或跨会话转发失败、历史不可见、压缩报错、子代理正文不可读、provider 不匹配和 invalid_encrypted_content；在授权范围保留历史、验证恢复并清理本次备份。用于用户请求会话修复或修复后的备份清理。
 ---
 
 # Codex 会话修复
@@ -14,6 +14,7 @@ description: 排查并修复 Codex 会话无法续聊、新建或跨会话转发
 读取必要状态及最近失败 turn，记录错误码、item ID、turn ID。避免整段导出历史、配置或凭据。工具返回成功、状态 running 和磁盘出现 encrypted_content 均不能代替真实通信证据。
 
 - 工具缺失、转发失败、额度或 provider 错误：读 [诊断与入口修复](references/diagnosis.md)。
+- 历史列表为空、压缩模型报错、命令宿主缺失或 encrypted function output：读 [历史案例与分流](references/recovery-cases.md)，按对应层处理。
 - 明确报 invalid_encrypted_content，或需确定历史回退边界：读 [保留历史并修复](references/history-repair.md)。
 - 用户验收通过并要求清理备份：读 [验收后清理](references/backup-cleanup.md)。只清理原任务记录确认的对象。
 

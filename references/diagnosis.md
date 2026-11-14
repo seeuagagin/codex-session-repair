@@ -11,8 +11,14 @@
 | App-server task is not ready: model-provider | 通用未就绪状态；须查看更具体错误，不能直接等同 provider mismatch |
 | invalid_encrypted_content，指定 item 验证/解密/解析失败 | 定位所属 turn，进入历史修复流程 |
 | execution-config-loading 等未就绪 | 查实际加载状态；不当成同一个加密故障 |
+| 历史列表为空但正式接口可读指定 UUID | 先查 host、归档、项目及 provider/source 过滤；见 [历史案例](recovery-cases.md#历史不可见数据仍在) |
+| 仅压缩时 model unsupported / no available account | 核对 compact 实际请求及网关映射；见 [压缩案例](recovery-cases.md#压缩模型与普通对话模型不同) |
+| codex-code-mode-host missing / not found | 核对安装包及同版本宿主入口；见 [宿主案例](recovery-cases.md#命令宿主入口缺失) |
+| Encrypted function output content could not be decrypted or decoded | 先定位工具结果和桥接边界；见 [加密工具结果案例](recovery-cases.md#加密工具结果与正文占位符) |
 
 优先使用 read_thread、分页历史与紧邻错误日志。需要 SQLite 辅助定位时，仅打开已确认数据库的 URI mode=ro，先看 schema，参数化查询精确 UUID 和必要字段。数据库版本、路径和列名均须现场确认。
+
+索引中的 rollout_path 不存在不能单独证明历史已删除。本次历史审阅遇到旧路径失效、正式 read_thread 仍能分页读取的情况；先沿正式入口核实实际存储，不据此重建索引或恢复全库。
 
 ## codex_app 启动路径失效
 
